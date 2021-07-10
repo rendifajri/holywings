@@ -13,6 +13,6 @@ class Sales extends Model
         return $this->belongsTo(Customer::class);
     }
     public function salesDetail(){
-        return $this->hasMany(SalesDetail::class);
+        return $this->hasMany(SalesDetail::class)->selectRaw("*, (qty * price) as sub_total");
     }
 }
