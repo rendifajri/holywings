@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\SalesController;
+use App\Http\Controllers\PromoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,12 @@ Route::get   ('/item/{id}', [ItemController::class, 'detail']);
 Route::post  ('/item', [ItemController::class, 'create']);
 Route::put   ('/item/{id}', [ItemController::class, 'update']);
 Route::delete('/item/{id}', [ItemController::class, 'delete']);
+
+Route::get   ('/promo', [PromoController::class, 'index']);
+Route::get   ('/promo/{id}', [PromoController::class, 'detail']);
+Route::post  ('/promo', [PromoController::class, 'create']);
+Route::put   ('/promo/{id}', [PromoController::class, 'update']);
+Route::delete('/promo/{id}', [PromoController::class, 'delete']);
 
 Route::get   ('/sales', [SalesController::class, 'index']);
 Route::get   ('/sales/{id}', [SalesController::class, 'detail']);
