@@ -63,6 +63,11 @@ class SalesController extends Controller
                 throw new \ValidationException($valid);
 
             $promo = Promo::where('code', $request->promo_code)->first();
+            if($promo != null && $promo->status == 0){
+                throw \ValidationException::withMessages([
+                    "promo_code" => "Promo is expired.",
+                ]);
+            }
             //var_dump($request->promo_code);
             $sales = Sales::create([
                 "customer_id" => $request->customer_id,
@@ -83,7 +88,7 @@ class SalesController extends Controller
             }
             if($promo != null && $total < $promo->min_amount){
                 throw \ValidationException::withMessages([
-                    "promo_id" => "Total amount must be greater than ".number_format($promo->min_amount,0,',','.').".",
+                    "promo_code" => "Total amount must be greater than ".number_format($promo->min_amount,0,',','.').".",
                 ]);
             }
 
